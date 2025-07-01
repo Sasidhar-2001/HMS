@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${subject}">Email Subject</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 5px; }
+        h2 { color: #0056b3; }
+        ul { list-style-type: none; padding: 0; }
+        li strong { color: #0056b3; }
+        .footer { margin-top: 20px; font-size: 0.9em; color: #777; text-align: center; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2 th:text="${subject}">Welcome!</h2>
+
+        <p>Dear <span th:text="${user.firstName}">User</span> <span th:text="${user.lastName}">Name</span>,</p>
+
+        <p>Your account for the Hostel Management System has been successfully created. Below are your details:</p>
+
+        <ul>
+            <li><strong>Name:</strong> <span th:text="${user.firstName} + ' ' + ${user.lastName}">Full Name</span></li>
+            <li><strong>Email:</strong> <span th:text="${user.email}">user@example.com</span></li>
+            <li><strong>Role:</strong> <span th:text="${user.role.name()}">ROLE</span></li>
+            <li th:if="${user.studentId != null}"><strong>Student ID:</strong> <span th:text="${user.studentId}">STUDENT_ID</span></li>
+            <li th:if="${user.employeeId != null}"><strong>Employee ID:</strong> <span th:text="${user.employeeId}">EMPLOYEE_ID</span></li>
+        </ul>
+
+        <p>Please keep your login credentials secure. You can log in to the system using your email and password.</p>
+
+        <p>If you have any questions, feel free to contact support.</p>
+
+        <p>Best regards,<br/>The Hostel Management Team</p>
+    </div>
+    <div class="footer">
+        <p>&copy; <span th:text="${#dates.year(#dates.createNow())}">YYYY</span> Hostel Management System. All rights reserved.</p>
+    </div>
+</body>
+</html>
